@@ -5,25 +5,35 @@ pipeline {
 			steps {
 				sh '''
 						echo "this is build stage"
-						sleep 5
+						sleep 2
 				   '''	
 			} 
 		}
 		
-		stage ('deploy') {
-			steps {
-				sh '''
-						echo "this is deploy stage"
-						sleep 5
-				   '''	
-			}	   
+		parallel {
+			stage ('deploy1') {
+				steps {
+					sh '''
+							echo "this is deploy1 stage"
+							sleep 2
+					   '''	
+				}	   
+			}
+			
+			stage ('deploy2') {
+				steps {
+					sh '''
+							echo "this is deploy2 stage"
+							sleep 2
+					   '''	
+				}	   
+			}
 		}
-		
 		stage ('test') {
 			steps {
 				sh '''
 						echo "this is test stage"
-						sleep 5
+						sleep 2
 				   '''	
 			}	   
 		}
